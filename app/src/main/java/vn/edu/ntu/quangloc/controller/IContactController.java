@@ -8,6 +8,6 @@ public interface IContactController {
     public List<Contact> getAllContact();
     public void addContact(Contact contact);
     public int layId();
-    public int setCurrent(int id);
+    public int setCurrent(int pos);
     public int getCurrent();
 }

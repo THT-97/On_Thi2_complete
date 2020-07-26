@@ -10,7 +10,7 @@ import vn.edu.ntu.quangloc.model.Contact;
 public class ContactController extends Application implements IContactController {
 
     List<Contact> listContacts = new ArrayList<>();
-    int curentId;
+    int curentContact;
     public ContactController() {
         listContacts.add(new Contact(1,"Nguyễn Hoàng Nam1","08/12/1999","09827294725","05 Hòn Chồng"));
         listContacts.add(new Contact(2,"Nguyễn Hoàng Nam2","08/12/1999","09827294725","05 Hòn Chồng"));
@@ -35,14 +35,14 @@ public class ContactController extends Application implements IContactController
     }
 
     @Override
-    public int setCurrent(int id) {
-        curentId = id;
-        return curentId;
+    public int setCurrent(int pos) {
+        curentContact = pos;
+        return curentContact;
     }
 
     @Override
     public int getCurrent() {
-        return curentId;
+        return curentContact;
     }
 
 }

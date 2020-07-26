@@ -61,7 +61,7 @@ public class SecondFragment extends Fragment {
                 contact.setPhone(edtPhone.getText().toString());
                 contact.setAddress(edtAddr.getText().toString());
                 if(controller.getCurrent()>0){
-                    controller.getAllContact().set(controller.getCurrent()-1, contact);
+                    controller.getAllContact().set(controller.getCurrent(), contact);
                 }
                 else controller.addContact(contact);
                 Toast.makeText(getActivity(), "Đã lưu", Toast.LENGTH_LONG).show();
@@ -85,7 +85,7 @@ public class SecondFragment extends Fragment {
         ((MainActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         controller = (IContactController) ((MainActivity)getActivity()).getApplication();
-        if(controller.getCurrent()>0) edtId.setText(Integer.toString(controller.getCurrent()));
+        if(controller.getCurrent()>0) edtId.setText(Integer.toString(controller.getAllContact().get(controller.getCurrent()).getId()));
         else edtId.setText(Integer.toString(controller.layId()));
     }
 
