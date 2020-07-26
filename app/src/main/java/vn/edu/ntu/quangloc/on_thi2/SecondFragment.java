@@ -55,7 +55,7 @@ public class SecondFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Contact contact = new Contact();
-                contact.setId(controller.layId());
+                contact.setId(controller.getAllContact().get(controller.getCurrent()).getId());
                 contact.setName(edtName.getText().toString());
                 contact.setBirthday(edtDate.getText().toString());
                 contact.setPhone(edtPhone.getText().toString());
@@ -63,7 +63,10 @@ public class SecondFragment extends Fragment {
                 if(controller.getCurrent()>-1){
                     controller.getAllContact().set(controller.getCurrent(), contact);
                 }
-                else controller.addContact(contact);
+                else {
+                    contact.setId(controller.layId());
+                    controller.addContact(contact);
+                }
                 Toast.makeText(getActivity(), "Đã lưu", Toast.LENGTH_LONG).show();
             }
         });
@@ -92,7 +95,8 @@ public class SecondFragment extends Fragment {
             edtAddr.setText(contact.getAddress());
             edtDate.setText(contact.getBirthday());
             edtPhone.setText(contact.getPhone());
-        } else edtId.setText(Integer.toString(controller.layId()));
+        }
+        else edtId.setText(Integer.toString(controller.layId()));
     }
 
     @Override
