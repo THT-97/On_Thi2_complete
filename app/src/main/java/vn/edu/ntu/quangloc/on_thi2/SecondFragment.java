@@ -60,7 +60,7 @@ public class SecondFragment extends Fragment {
                 contact.setBirthday(edtDate.getText().toString());
                 contact.setPhone(edtPhone.getText().toString());
                 contact.setAddress(edtAddr.getText().toString());
-                if(controller.getCurrent()>0){
+                if(controller.getCurrent()>-1){
                     controller.getAllContact().set(controller.getCurrent(), contact);
                 }
                 else controller.addContact(contact);
@@ -85,8 +85,14 @@ public class SecondFragment extends Fragment {
         ((MainActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         controller = (IContactController) ((MainActivity)getActivity()).getApplication();
-        if(controller.getCurrent()>0) edtId.setText(Integer.toString(controller.getAllContact().get(controller.getCurrent()).getId()));
-        else edtId.setText(Integer.toString(controller.layId()));
+        if(controller.getCurrent()>-1) {
+            Contact contact = controller.getAllContact().get(controller.getCurrent());
+            edtId.setText(Integer.toString(contact.getId()));
+            edtName.setText(contact.getName());
+            edtAddr.setText(contact.getAddress());
+            edtDate.setText(contact.getBirthday());
+            edtPhone.setText(contact.getPhone());
+        } else edtId.setText(Integer.toString(controller.layId()));
     }
 
     @Override
